@@ -19,7 +19,7 @@ export default function Footer() {
         <Grid container spacing={3}>
           <Grid item xs={10} sm={4}>
             <Typography variant="h6" gutterBottom sx={{ color: "white" }}>
-              Patrick Obot
+             NomadicNarratives
             </Typography>
           </Grid>
           <Grid item xs={12} sm={4}>
@@ -57,7 +57,7 @@ export default function Footer() {
           <Typography variant="body2" align="center" sx={{ color: "white" }}>
             {"Copyright © "}
             <Link color="inherit" href="/">
-              Patrick Obot
+             NomadicNarratives
             </Link>{" "}
             {new Date().getFullYear()}
             {"."}

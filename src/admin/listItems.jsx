@@ -11,6 +11,7 @@ import LayersIcon from '@mui/icons-material/Layers';
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import InfoIcon from '@mui/icons-material/Info';
 import MovieIcon from '@mui/icons-material/Movie';
+import { Link } from 'react-router-dom';
 
 
 export const mainListItems = (
@@ -21,12 +22,14 @@ export const mainListItems = (
       </ListItemIcon>
       <ListItemText primary="Dashboard" />
     </ListItemButton>
+     <Link to="/posts" style={{ textDecoration: 'none', color:"black" }}>
     <ListItemButton>
       <ListItemIcon>
         <InfoIcon />
       </ListItemIcon>
-      <ListItemText primary="News" />
+      <ListItemText primary="Posts" />
     </ListItemButton>
+    </Link>
     <ListItemButton>
       <ListItemIcon>
         <MovieIcon />

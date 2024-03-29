@@ -44,7 +44,7 @@ export default function ButtonAppBar() {
             <Sidenav />
           </IconButton>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1, fontWeight: "bold" }}>
-            Patrick Obot
+            NomadicNarratives
           </Typography>
 
           <Link to="/subscribe" style={{ textDecoration: 'none' }}>

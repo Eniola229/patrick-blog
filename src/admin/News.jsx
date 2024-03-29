@@ -24,6 +24,7 @@ import Select from '@mui/material/Select';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import NativeSelect from '@mui/material/NativeSelect';
+import Swal from 'sweetalert2';
 
 const theme = createTheme({
   palette: {
@@ -61,7 +62,8 @@ const News = () => {
       const storageRef = ref(storage, file.name);
       const uploadTask = uploadBytesResumable(storageRef, file);
       uploadTask.on("state_changed", (snapshot) => {
-       const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        const progress = 
+        (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
         setProgress(progress);
         switch (snapshot.state) {
         case "paused":
@@ -114,7 +116,7 @@ const News = () => {
 
   //for handling our form data
 
-  const handleSubmit = async(e) => {
+ const handleSubmit = async(e) => {
     e.preventDefault();
 
     let errors = validate();
@@ -125,8 +127,13 @@ const News = () => {
       ...data,
       timestamp: serverTimestamp()
     })
-    // navigate("/");
-
+   {/*This show if post is succesfully*/}
+        Swal.fire({
+          title: 'Posts Uploaded Successfully',
+          icon: 'success',
+          confirmButtonText: 'Ok'
+        })
+         navigate("/posts");
   }
 
   const handleChange= (e) => {
@@ -141,7 +148,7 @@ const News = () => {
        <Container component="main" sx={{width:"100%"}} >
         <Paper elevation={3} style={{ padding: 20 }}>
           <Typography component="h3" variant="h4" align="center" color="secondary.main">
-            For News
+            For Posts
           </Typography>
           <form  onSubmit={handleSubmit}>
             <Grid sx={{display:"flex", flex:"flexWrap", gap:"5px"}} container spacing={3}>
@@ -207,10 +214,12 @@ const News = () => {
                   label="Category"
                   onChange={handleChange}
                 >
+                  <option value="None">None</option>
+                   <option value="Headline">Headline</option>
                   <option value="News">News</option>
                   <option value="Entertainment">Entertainment</option>
                   <option value="Bussiness">Bussiness</option>
-                  <option value="Sport">Sport</option>
+                  <option value="Sport">Sports</option>
                 </NativeSelect>
               </FormControl>
              
