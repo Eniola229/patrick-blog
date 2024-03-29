@@ -4,7 +4,9 @@ import Footer from './componenets/Footer';
 import Headlines from './categories/Headlines';
 import Featured from './categories/Featured';
 import News from './categories/News';
+import Videos from './Videos';
 import Entertainment from './categories/Entertainment';
+import Sport from './categories/Sport';
 import Grid from '@mui/material/Grid';
 
 function App() {
@@ -18,6 +20,8 @@ function App() {
           <Headlines />
           <News />
           <Entertainment/>
+          <Videos/>
+          <Sport/>
         </Box>
       </Grid>
       <Grid item xs={12} md={4}>

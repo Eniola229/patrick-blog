@@ -6,7 +6,7 @@ import { useMediaQuery, useTheme } from '@mui/material';
 
 
 function Headlines() {
-  const theme = useTheme();
+   const theme = useTheme();
    const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
   return (

@@ -56,7 +56,7 @@ export default function Footer() {
         <Box mt={3}>
           <Typography variant="body2" align="center" sx={{ color: "white" }}>
             {"Copyright © "}
-            <Link color="inherit" href="https://your-website.com/">
+            <Link color="inherit" href="/">
               Patrick Obot
             </Link>{" "}
             {new Date().getFullYear()}
