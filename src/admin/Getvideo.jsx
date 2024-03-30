@@ -74,7 +74,7 @@ const StyledButton = styled(Button)({
   },
 });
 
-const Posts = () => {
+const Getvideo = () => {
 
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const navigate = useNavigate(); 
@@ -85,7 +85,7 @@ const Posts = () => {
 
   useEffect(() => {
     setLoading(true);
-    const unsub = onSnapshot(collection(db, "news"), (snapshot) => {
+    const unsub = onSnapshot(collection(db, "video"), (snapshot) => {
       let list = [];
       snapshot.docs.forEach((doc) => {
           list.push({id: doc.id, ...doc.data()})
@@ -117,14 +117,14 @@ const Posts = () => {
 
 
 
-  const handleDelete = async (newsId) => {
+  const handleDelete = async (videoId) => {
     try {
       // Delete the document with the specified product ID
-      await deleteDoc(doc(db, 'news', newsId));
+      await deleteDoc(doc(db, 'video', videoId));
       console.log('Posts deleted successfully!');
 
-      // Refresh the news after deletion
-      const updatedPosts = posts.filter((news) => news.id !== newsId);
+      // Refresh the video after deletion
+      const updatedPosts = posts.filter((video) => video.id !== videoId);
       setPosts(updatedPosts);
     } catch (error) {
       console.error('Error deleting posts:', error);
@@ -139,39 +139,35 @@ const Posts = () => {
           <CircularProgress sx={{justifyContent:"center", color:"red"}} color="success" /> 
           </Box>:(
       <Grid container spacing={4}>
-     {posts.map((news) => (
+     {posts.map((video) => (
 
-           <StyledCard key={news.id}>
+           <StyledCard key={video.id}>
           <CardActionArea>
-            <StyledCardMedia
-              component="img"
-              image={news.img}
-              alt="Product Image"
-            />
+           <video controls width="100%" height="200">
+                  <source src={video.video} type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
             <StyledCardContent>
               <Typography gutterBottom variant="h6" sx={{fontWeight:"bolder", color:"chocolate"}} component="div">
-               {news.intro}
+               {video.intro}
               </Typography>
               <StyledRating>
                 <Typography variant="body2" sx={{color:"orange"}}>
-                  {news.body}
+                  {video.body}
                 </Typography>
               </StyledRating>
               <StyledAmount>
-                {news.source}
+                {video.source}
               </StyledAmount>
               <Typography variant="body2" sx={{color:"green"}}>
-                  {news.timestamp && new Date(news.timestamp.seconds * 1000).toLocaleDateString()}
+                 {video.timestamp && new Date(video.timestamp.seconds * 1000).toLocaleDateString()}
                 </Typography>
 
             </StyledCardContent>
           </CardActionArea>
           <CardActions>
-            <Button onClick={() => navigate(`/editpost/${news.id}`)} sx={{background:"green", color:'white'}} size="small">
-              Edit
-            </Button>
-
-            <StyledButton onClick={() => handleDelete(news.id)} sx={{background:"red"}} size="small">
+      
+            <StyledButton onClick={() => handleDelete(video.id)} sx={{background:"red"}} size="small">
               Delete
             </StyledButton>
           </CardActions>
@@ -189,4 +185,4 @@ const Posts = () => {
   );
 };
 
-export default Posts;
+export default Getvideo;

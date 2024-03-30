@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState, useEffect  } from 'react';
 import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
@@ -9,10 +9,48 @@ import CardMedia from '@mui/material/CardMedia';
 import IconButton from '@mui/material/IconButton';
 import CardActions from '@mui/material/CardActions';
 import Grid from '@mui/material/Grid';
-
+import { onSnapshot } from 'firebase/firestore'
+import CircularProgress from '@mui/material/CircularProgress';
+import Swal from 'sweetalert2';
+import { collection } from 'firebase/firestore';
+import { db } from "./auth/Firebase";
+import { useNavigate } from 'react-router-dom'; 
 
 function More() {
    const theme = useTheme();
+   const [loading, setLoading] = useState(false);
+   const [posts, setPosts] = useState([]);
+    const navigate = useNavigate(); 
+
+
+
+     useEffect(() => {
+    setLoading(true);
+    const unsub = onSnapshot(collection(db, "news"), (snapshot) => {
+      let list = [];
+      snapshot.docs.forEach((doc) => {
+          list.push({id: doc.id, ...doc.data()})
+      });
+      setPosts(list);
+      setLoading(false);
+    }, 
+    (error) => {
+       console.log(error);
+       Swal.fire({
+          title: 'Oops...',
+          text: (error.code),
+          icon: 'error',
+          confirmButtonText: 'OK'
+        })
+          {/*Swal stops here*/}
+    } 
+    );
+    return () => {
+      unsub();
+    }
+  }, [])
+
+ 
 
   return (
     <>
@@ -48,118 +86,73 @@ function More() {
       width: '95%',
      }}
     >
-    
-    <Grid item xs={12} sm={6} md={4}> 
-      <CardMedia
-        component="img"
-        alt="green iguana"
-        height="200"
-        image="https://global.ariseplay.com/amg/www.arise.tv/uploads/2024/03/Oil-Theft-Bunkery.jpg"
-      />
-      <CardContent>
-        <Typography gutterBottom variant="h5"  component="div"
-        sx={{
-          color:"darkred",
-          fontWeight:'bold'
-        }}
-        >
-          Africa
-        </Typography>
-        <Typography variant="body2" 
-         sx={{
-          color:"black",
-          fontWeight:'bold'
-        }}
-        >
-          Blessing Ibunge
-          Oil Theft: NSCDC Uncovers 10 Illegal Refineries, Arrests 5 Suspects In Rivers Community
-        </Typography>
-      </CardContent>
-      <CardActions>
-        <Button size="small"
-         sx={{
-          color:"darkred",
-          fontWeight:'bold'
-        }}
-        >Read More</Button>
-      </CardActions>
-    </Grid>
-   
-     <Grid item xs={12} sm={6} md={4}> 
-      <CardMedia
-        component="img"
-        alt="green iguana"
-        height="200"
-        image="https://global.ariseplay.com/amg/www.arise.tv/uploads/2024/03/Oil-Theft-Bunkery.jpg"
-      />
-      <CardContent>
-        <Typography gutterBottom variant="h5"  component="div"
-        sx={{
-          color:"darkred",
-          fontWeight:'bold'
-        }}
-        >
-          Africa
-        </Typography>
-        <Typography variant="body2" 
-         sx={{
-          color:"black",
-          fontWeight:'bold'
-        }}
-        >
-          Blessing Ibunge
-          Oil Theft: NSCDC Uncovers 10 Illegal Refineries, Arrests 5 Suspects In Rivers Community
-        </Typography>
-      </CardContent>
-      <CardActions>
-        <Button size="small"
-         sx={{
-          color:"darkred",
-          fontWeight:'bold'
-        }}
-        >Read More</Button>
-      </CardActions>
-    </Grid>
-   
-     <Grid item xs={12} sm={6} md={4}> 
-      <CardMedia
-        component="img"
-        alt="green iguana"
-        height="200"
-        image="https://global.ariseplay.com/amg/www.arise.tv/uploads/2024/03/Oil-Theft-Bunkery.jpg"
-      />
-      <CardContent>
-        <Typography gutterBottom variant="h5"  component="div"
-        sx={{
-          color:"darkred",
-          fontWeight:'bold'
-        }}
-        >
-          Africa
-        </Typography>
-        <Typography variant="body2" 
-         sx={{
-          color:"black",
-          fontWeight:'bold'
-        }}
-        >
-          Blessing Ibunge
-          Oil Theft: NSCDC Uncovers 10 Illegal Refineries, Arrests 5 Suspects In Rivers Community
-        </Typography>
-      </CardContent>
-      <CardActions>
-        <Button size="small"
-         sx={{
-          color:"darkred",
-          fontWeight:'bold'
-        }}
-        >Read More</Button>
-      </CardActions>
-    </Grid>
-   
+    {loading ?
 
-    
-     
+      <Box sx={{justifyContent:"center", margin:"auto", alignItems:"center", textAlign:"center", marginTop:"5rem"}}>
+       <CircularProgress sx={{justifyContent:"center", color:"red"}} /> 
+          <Typography 
+      sx={{
+        color:'black',
+        fontWeight:'bold',
+        fontSize:'1rem'
+      }}
+      >
+        Loading...
+      </Typography>
+      <Typography 
+      sx={{
+        color:'black',
+        fontWeight:'bold',
+        fontSize:'0.5rem'
+      }}
+      >
+       If it taking time kindly check Internet Connection
+      </Typography>
+        </Box>:(
+        <>
+         {posts
+          .filter(news => news.category === "More") 
+          .map(news => (
+    <Grid item xs={12} sm={6} md={4} key={news.id}> 
+
+      <CardMedia
+        component="img"
+        alt="News Img"
+        height="200"
+        image={news.img}
+      />
+      <CardContent>
+        <Typography gutterBottom variant="h5"  component="div"
+        sx={{
+          color:"darkred",
+          fontWeight:'bold',
+          fontSize:"0.9rem"
+        }}
+        >
+            {news.source}
+        </Typography>
+        <Typography variant="body2" 
+         sx={{
+          color:"black",
+          fontWeight:'bold'
+        }}
+        >
+           {news.intro}
+        </Typography>
+      </CardContent>
+      <CardActions>
+        <Button size="small"
+         sx={{
+          color:"darkred",
+          fontWeight:'bold'
+        }}
+         onClick={() => navigate(`/readmore/${news.id}`)}
+        >Read More</Button>
+      </CardActions>
+    </Grid>
+    ))}
+    </>
+     )}
     </Grid>
 </>  
   );

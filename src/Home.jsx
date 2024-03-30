@@ -8,7 +8,7 @@ import Videos from './Videos';
 import Entertainment from './categories/Entertainment';
 import Sport from './categories/Sport';
 import Grid from '@mui/material/Grid';
-
+import More from './More';
 function App() {
   return (
     <>
@@ -22,6 +22,7 @@ function App() {
           <Entertainment/>
           <Videos/>
           <Sport/>
+          <More />
         </Box>
       </Grid>
       <Grid item xs={12} md={4}>

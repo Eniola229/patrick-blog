@@ -38,20 +38,19 @@ const theme = createTheme({
 });
     
 const initialState = {
-  intro: "",
-  body: "",
-  source: "",
-  category: "",
+  description: "",
+  link: "",
+  category: ""
 }
 
-const News = () => {
+const Ads = () => {
 
   const [data, setData] = useState(initialState);
   const [file, setFile] = useState(null);
   const [progress, setProgress] = useState(null);
   const [errors, setErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
-  const {intro, body, source, category } = data;
+  const {description, link, category } = data;
   const navigate = useNavigate();
   const [addSwitch, setAddSwitch] = useState(false);
 
@@ -81,7 +80,7 @@ const News = () => {
       },
       () => {
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-          setData((prev) => ({...prev, img: downloadURL}))
+          setData((prev) => ({...prev, media: downloadURL}))
         });
       }
       );
@@ -98,17 +97,14 @@ const News = () => {
 
   const validate= () => {
     let errors = {};
-    if(!intro) {
-      errors.intro = "Intro is Required";
+    if(!description) {
+      errors.description = "Intro is Required";
     }
-     if(!body) {
-      errors.body = "Body is Required";
+     if(!link) {
+      errors.link = "link is Required";
     }
-     if(!source) {
-      errors.source = "Source is Required";
-    }
-     if(!category) {
-      errors.category = "Category is Required";
+    if(!category) {
+      errors.link = "Category is Required";
     }
     
     return errors;
@@ -123,17 +119,17 @@ const News = () => {
     if (Object.keys(errors).length) return setErrors(errors);
 
     setIsSubmit(true);
-    await addDoc(collection(db, "news"), {
+    await addDoc(collection(db, "ads"), {
       ...data,
       timestamp: serverTimestamp()
     })
    {/*This show if post is succesfully*/}
         Swal.fire({
-          title: 'Posts Uploaded Successfully',
+          title: 'Ads Uploaded Successfully',
           icon: 'success',
           confirmButtonText: 'Ok'
         })
-         navigate("/posts");
+         navigate("/getads");
   }
 
   const handleChange= (e) => {
@@ -148,25 +144,10 @@ const News = () => {
        <Container component="main" sx={{width:"100%"}} >
         <Paper elevation={3} style={{ padding: 20 }}>
           <Typography component="h3" variant="h4" align="center" color="secondary.main">
-            For Posts
+            For Ads
           </Typography>
           <form  onSubmit={handleSubmit}>
             <Grid sx={{display:"flex", flex:"flexWrap", gap:"5px"}} container spacing={3}>
-              <Grid item xs={12}>
-                <TextField
-                sx={{
-                  border:"1px solid green",
-                  color:"green"
-                }}
-                  label="Intro"
-                  value={intro}
-                  name="intro"
-                  error={errors.intro ? {content: errors.intro} : null}
-                  onChange={handleChange}
-                  fullWidth
-                  autoFocus
-                />
-              </Grid>
               <Grid item xs={16}>
                 <TextField
                  sx={{
@@ -175,10 +156,10 @@ const News = () => {
                 }}
                   multiline
                   rows={4}
-                  label="Body"
-                  value={body}
-                  name="body"
-                  error={errors.body ? {content: errors.body} : null}
+                  label="Description"
+                  value={description}
+                  name="description"
+                  error={errors.description ? {content: errors.description} : null}
                   onChange={handleChange}
                   fullWidth
                 />
@@ -190,10 +171,10 @@ const News = () => {
                   border:"1px solid green",
                   color:"green"
                 }}
-                  label="Source"
-                  name="source"
-                  error={errors.source ? {content: errors.source} : null}
-                  value={source}
+                  label="Link"
+                  name="link"
+                  error={errors.link ? {content: errors.link} : null}
+                  value={link}
                   onChange={handleChange}
                   fullWidth
                 />
@@ -215,14 +196,8 @@ const News = () => {
                   onChange={handleChange}
                 >
                   <option value="None">None</option>
-                  <option value="Headline">Headline</option>
-                  <option value="More">More</option>
-                  <option value="Popular">Popular</option>
-                  <option value="Featured">Featured</option>
-                  <option value="News">News</option>
-                  <option value="Entertainment">Entertainment</option>
-                  <option value="Bussiness">Bussiness</option>
-                  <option value="Sport">Sports</option>
+                  <option value="ads">Ads 1</option>
+                  <option value="adstwo">Ads2</option>
                 </NativeSelect>
               </FormControl>
              
@@ -263,4 +238,4 @@ const News = () => {
   );
 };
 
-export default News;
+export default Ads;

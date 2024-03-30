@@ -85,7 +85,7 @@ const Posts = () => {
 
   useEffect(() => {
     setLoading(true);
-    const unsub = onSnapshot(collection(db, "news"), (snapshot) => {
+    const unsub = onSnapshot(collection(db, "ads"), (snapshot) => {
       let list = [];
       snapshot.docs.forEach((doc) => {
           list.push({id: doc.id, ...doc.data()})
@@ -117,14 +117,14 @@ const Posts = () => {
 
 
 
-  const handleDelete = async (newsId) => {
+  const handleDelete = async (adsId) => {
     try {
       // Delete the document with the specified product ID
-      await deleteDoc(doc(db, 'news', newsId));
+      await deleteDoc(doc(db, 'ads', adsId));
       console.log('Posts deleted successfully!');
 
       // Refresh the news after deletion
-      const updatedPosts = posts.filter((news) => news.id !== newsId);
+      const updatedPosts = posts.filter((ads) => ads.id !== adsId);
       setPosts(updatedPosts);
     } catch (error) {
       console.error('Error deleting posts:', error);
@@ -139,39 +139,35 @@ const Posts = () => {
           <CircularProgress sx={{justifyContent:"center", color:"red"}} color="success" /> 
           </Box>:(
       <Grid container spacing={4}>
-     {posts.map((news) => (
+     {posts.map((ads) => (
 
-           <StyledCard key={news.id}>
+           <StyledCard key={ads.id}>
           <CardActionArea>
             <StyledCardMedia
               component="img"
-              image={news.img}
+              image={ads.media}
               alt="Product Image"
             />
             <StyledCardContent>
               <Typography gutterBottom variant="h6" sx={{fontWeight:"bolder", color:"chocolate"}} component="div">
-               {news.intro}
+               {ads.description}
               </Typography>
-              <StyledRating>
-                <Typography variant="body2" sx={{color:"orange"}}>
-                  {news.body}
-                </Typography>
-              </StyledRating>
-              <StyledAmount>
-                {news.source}
-              </StyledAmount>
               <Typography variant="body2" sx={{color:"green"}}>
-                  {news.timestamp && new Date(news.timestamp.seconds * 1000).toLocaleDateString()}
+                 {ads.category}
                 </Typography>
+              <Typography variant="body2" sx={{color:"green"}}>
+                 {ads.timestamp && new Date(ads.timestamp.seconds * 1000).toLocaleDateString()}
+                </Typography>
+
 
             </StyledCardContent>
           </CardActionArea>
           <CardActions>
-            <Button onClick={() => navigate(`/editpost/${news.id}`)} sx={{background:"green", color:'white'}} size="small">
+            <Button onClick={() => navigate(`/editadsadmin/${ads.id}`)} sx={{background:"green", color:'white'}} size="small">
               Edit
             </Button>
 
-            <StyledButton onClick={() => handleDelete(news.id)} sx={{background:"red"}} size="small">
+            <StyledButton onClick={() => handleDelete(ads.id)} sx={{background:"red"}} size="small">
               Delete
             </StyledButton>
           </CardActions>

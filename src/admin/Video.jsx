@@ -44,7 +44,7 @@ const initialState = {
   category: "",
 }
 
-const News = () => {
+const Video = () => {
 
   const [data, setData] = useState(initialState);
   const [file, setFile] = useState(null);
@@ -81,7 +81,7 @@ const News = () => {
       },
       () => {
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-          setData((prev) => ({...prev, img: downloadURL}))
+          setData((prev) => ({...prev, video: downloadURL}))
         });
       }
       );
@@ -123,17 +123,17 @@ const News = () => {
     if (Object.keys(errors).length) return setErrors(errors);
 
     setIsSubmit(true);
-    await addDoc(collection(db, "news"), {
+    await addDoc(collection(db, "video"), {
       ...data,
       timestamp: serverTimestamp()
     })
    {/*This show if post is succesfully*/}
         Swal.fire({
-          title: 'Posts Uploaded Successfully',
+          title: 'Video Uploaded Successfully',
           icon: 'success',
           confirmButtonText: 'Ok'
         })
-         navigate("/posts");
+         navigate("/getvideo");
   }
 
   const handleChange= (e) => {
@@ -148,7 +148,7 @@ const News = () => {
        <Container component="main" sx={{width:"100%"}} >
         <Paper elevation={3} style={{ padding: 20 }}>
           <Typography component="h3" variant="h4" align="center" color="secondary.main">
-            For Posts
+            For Video
           </Typography>
           <form  onSubmit={handleSubmit}>
             <Grid sx={{display:"flex", flex:"flexWrap", gap:"5px"}} container spacing={3}>
@@ -263,4 +263,4 @@ const News = () => {
   );
 };
 
-export default News;
+export default Video;

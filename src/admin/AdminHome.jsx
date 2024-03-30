@@ -19,13 +19,16 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import { mainListItems, secondaryListItems } from './listItems';
 import News from './News'
+import Video from './Video';
+import Ads from './Ads';
+
 
 function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
       <Link color="inherit" href="https://mui.com/">
-        Patric Blog
+         NomadicNarratives
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -167,12 +170,18 @@ export default function AdminHome() {
               </Grid>
               {/* Healines */}
               <Grid item xs={12} md={4} lg={3}>
+
               </Grid>
               {/* Ads */}
-              <Grid item xs={12}>
-                <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
-                  {/*<Orders />*/}
-                </Paper>
+              <Grid item xs={9}>
+                
+                   <Video />
+      
+              </Grid>
+                 <Grid item xs={9}>
+                
+                   <Ads />
+      
               </Grid>
             </Grid>
             <Copyright sx={{ pt: 4 }} />

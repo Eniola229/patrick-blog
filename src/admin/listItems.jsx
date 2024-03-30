@@ -30,18 +30,22 @@ export const mainListItems = (
       <ListItemText primary="Posts" />
     </ListItemButton>
     </Link>
+    <Link to="/getvideo" style={{ textDecoration: 'none', color:"black" }}>
     <ListItemButton>
       <ListItemIcon>
         <MovieIcon />
       </ListItemIcon>
       <ListItemText primary="Videos" />
     </ListItemButton>
+    </Link>
+     <Link to="/getads" style={{ textDecoration: 'none', color:"black" }}>
     <ListItemButton>
       <ListItemIcon>
         <BarChartIcon />
       </ListItemIcon>
       <ListItemText primary="Ads" />
     </ListItemButton>
+    </Link>
     <ListItemButton>
       <ListItemIcon>
         <PeopleIcon />
