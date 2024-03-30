@@ -13,6 +13,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 import Swal from 'sweetalert2';
 import { collection } from 'firebase/firestore';
 import { db } from "../auth/Firebase";
+import Adsone from './Adsone';
 
 
 
@@ -154,6 +155,7 @@ function Featured() {
 )}
     </Box>
    )}
+    <Adsone/>
   </>
   );
 }

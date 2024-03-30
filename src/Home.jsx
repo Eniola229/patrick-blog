@@ -7,6 +7,7 @@ import News from './categories/News';
 import Videos from './Videos';
 import Entertainment from './categories/Entertainment';
 import Sport from './categories/Sport';
+import Adstwo from './categories/Adstwo';
 import Grid from '@mui/material/Grid';
 import More from './More';
 function App() {
@@ -18,6 +19,7 @@ function App() {
       <Grid item xs={12} md={8}>
         <Box sx={{ width: '100%' }}>
           <Headlines />
+          <Adstwo/>
           <News />
           <Entertainment/>
           <Videos/>

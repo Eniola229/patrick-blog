@@ -69,7 +69,7 @@ function Headlines() {
           <Box 
             key={news.id}
             sx={{
-              backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${news.img})`,
+              backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.5)), url(${news.img})`,
               backgroundSize: 'cover',
               backgroundPosition: 'center',
               width: '100%',

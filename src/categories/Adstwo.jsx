@@ -16,7 +16,7 @@ import { db } from "../auth/Firebase";
 
 
 
-function Adsone() {
+function Adstwo() {
    const theme = useTheme();
    const isPhoneSize = useMediaQuery(theme.breakpoints.down('sm'));
    const [loading, setLoading] = useState(false);
@@ -55,54 +55,23 @@ function Adsone() {
     <> 
     {/*for other card*/}
     {posts
-      .filter(ads => ads.category === "ads") 
-      .map(ads => (
-     <Card sx={{ display: 'flex', width:"100%", marginTop:'3%' }}>
-      <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-        <CardContent sx={{ flex: '1 0 auto' }}>
-         <Typography component="div" variant="p" 
-          sx={{
-            fontFamily:"monospace",
-            fontWeight:'bold',
-            color:"red",
-            fontSize:"0.9rem"
-          }}>
-           Ads
-          </Typography>
-          <Typography component="div" variant="p" 
-          sx={{
-            fontFamily:"monospace",
-            fontWeight:'bold',
-            fontSize:'0.9em'
-          }}>
-           {ads.description}
-          </Typography>
-          <a href={ads.link}>
-          <Button 
-          sx={{
-            color:"white",
-            background:'red'
-          }}
-          >
-            Click Here
-          </Button>
-          </a>
-        </CardContent>
-      </Box>
-      <CardMedia
-        component="img"
-        sx={{
-         width: 150,
-         }}
-        image={ads.media}
-        alt="null"
+  .filter(ads => ads.category === "adstwo") 
+  .map(ads => (
+    <a href={ads.link} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
+      <Card sx={{ display: 'flex', justifyContent:"center", height:"20vh", margin:'auto', width:"70%", marginTop:'3%' }}>
+        <Box sx={{ display: 'flex', flexDirection: 'column',  backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${ads.media})`,   width: '100%',  backgroundSize: 'cover', backgroundPosition: 'center',}}>
+          <CardContent>
+            <Typography variant="body2" sx={{ color: '#ffffff' }}>
+              {ads.description}
+            </Typography>
+          </CardContent>
+        </Box>
+      </Card>
+    </a>
+))}
 
-      />
-    </Card>
-    ))
-    }
   </>
   );
 }
 
-export default Adsone;
+export default Adstwo;
