@@ -46,7 +46,7 @@ export default function Login() {
           icon: 'success',
           confirmButtonText: 'Continue'
         })
-         navigate("/AdminHome");
+         navigate("/AdminAuthHome");
           {/*Swal stops here*/}
         }).catch((err) => {
           setLoading(false);

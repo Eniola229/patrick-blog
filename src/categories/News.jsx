@@ -15,6 +15,9 @@ import Swal from 'sweetalert2';
 import { collection } from 'firebase/firestore';
 import { db } from "../auth/Firebase";
 import { useNavigate } from 'react-router-dom'; 
+import CommentIcon from '@mui/icons-material/Comment';
+import { Dialog, DialogTitle, DialogContent, DialogActions, TextField, Container } from '@mui/material';
+import SendIcon from '@mui/icons-material/Send';
 
 
 function News() {
@@ -22,6 +25,25 @@ function News() {
    const [loading, setLoading] = useState(false);
    const [posts, setPosts] = useState([]);
    const navigate = useNavigate(); 
+   const [open, setOpen] = useState(false);
+   const [comment, setComment] = useState('');
+
+
+     const handleChange = (e) => {
+    setComment(e.target.value);
+    };
+
+    const handleSubmit = (e) => {
+      e.preventDefault();
+      setOpen(true); // Open the modal box after form submission
+    };
+     const handleClose = () => {
+    setOpen(false);
+    };
+
+    const handleSubscribeClick = () => {
+      setOpen(true); // Open the modal box when Subscribe button is clicked
+    };
 
 
 
@@ -112,7 +134,8 @@ function News() {
         </Box>:(
         <>
          {posts
-          .filter(news => news.category === "News") 
+          .filter(news => news.category === "News")
+          .sort((a, b) => new Date(b.date) - new Date(a.date))
           .map(news => (
     <Grid item xs={12} sm={6} md={4} key={news.id}> 
 
@@ -149,11 +172,46 @@ function News() {
         }}
         onClick={() => navigate(`/readmore/${news.id}`)}
         >Read More</Button>
+         <CommentIcon
+         onClick={handleSubscribeClick}
+        />
       </CardActions>
     </Grid>
     ))}
     </>
      )}
+     <Container maxWidth="sm">
+      <Dialog
+       open={open} onClose={handleClose}>
+      <DialogContent>
+         No Comment Yet
+        </DialogContent>
+          <form
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        textAlign: 'center',
+      }}    
+      onSubmit={handleSubmit}
+    >
+      <Box display="flex" alignItems="center">
+        <TextField
+          fullWidth
+          label="Comment"
+          type="text"
+          value={comment} 
+          onChange={handleChange}
+          margin="normal"
+          sx={{ width: "80%" }}
+        />
+        <SendIcon sx={{ width: "20%", marginLeft: "5px", color:"darkred" }} />
+      </Box>
+    </form>
+
+      </Dialog>
+    </Container>
     </Grid>
 </>  
   );

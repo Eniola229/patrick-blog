@@ -29,6 +29,7 @@ function Adstwo() {
       snapshot.docs.forEach((doc) => {
           list.push({id: doc.id, ...doc.data()})
       });
+
       setPosts(list);
       setLoading(false);
     }, 
@@ -48,27 +49,42 @@ function Adstwo() {
     }
   }, [])
 
- 
+  
 
 
   return (
     <> 
     {/*for other card*/}
-    {posts
-  .filter(ads => ads.category === "adstwo") 
+   {posts
+  .filter(ads => ads.category === "adstwo") // Filter ads by category
   .map(ads => (
-    <a href={ads.link} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
+    <a key={ads.id} href={ads.link} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
       <Card sx={{ display: 'flex', justifyContent:"center", height:"20vh", margin:'auto', width:"70%", marginTop:'3%' }}>
-        <Box sx={{ display: 'flex', flexDirection: 'column',  backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${ads.media})`,   width: '100%',  backgroundSize: 'cover', backgroundPosition: 'center',}}>
-          <CardContent>
-            <Typography variant="body2" sx={{ color: '#ffffff' }}>
-              {ads.description}
-            </Typography>
+        <Box sx={{ display: 'flex', flexDirection: 'column',  width: '100%'}}>
+          {ads.media.endsWith('.mp4') ? ( // Check if media is a video
+            <video autoPlay loop muted style={{ width: '100%', height: '100%', objectFit: 'cover' }}>
+              <source src={ads.media} type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          ) : ( // If media is not a video, assume it's an image
+            <Box style={{ backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${ads.media})`, backgroundSize: 'cover', backgroundPosition: 'center', width: '100%', height: '100%' }}>          
+            <CardContent>
+              <Typography variant="body2" sx={{ color: '#ffffff' }}>
+                {ads.description} 
+              </Typography>
           </CardContent>
+            </Box>
+          )}
+          
         </Box>
+
       </Card>
     </a>
-))}
+  ))
+  .sort(() => Math.random() - 0.5)
+  .slice(0, 1) 
+}
+
 
   </>
   );

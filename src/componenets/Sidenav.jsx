@@ -66,7 +66,7 @@ export default function Sidenav() {
 
 
   <ListItem disablePadding>
-    <ListItemButton to="/" style={{ textDecoration: 'none', color: 'white', fontSize: '30px', display: 'inline-block', margin: '10px' }}>
+    <ListItemButton to="/leatest" style={{ textDecoration: 'none', color: 'white', fontSize: '30px', display: 'inline-block', margin: '10px' }}>
       <ListItemIcon>
         <ArticleIcon />
       </ListItemIcon>
@@ -77,7 +77,7 @@ export default function Sidenav() {
   </ListItem>
 
   <ListItem disablePadding>
-    <ListItemButton to="/" style={{ textDecoration: 'none', color: 'white', fontSize: '30px', display: 'inline-block', margin: '10px' }}>
+    <ListItemButton to="/entertainment" style={{ textDecoration: 'none', color: 'white', fontSize: '30px', display: 'inline-block', margin: '10px' }}>
       <ListItemIcon>
         <MovieIcon />
       </ListItemIcon>
@@ -88,7 +88,7 @@ export default function Sidenav() {
   </ListItem>
 
   <ListItem disablePadding>
-    <ListItemButton to="/" style={{ textDecoration: 'none', color: 'white', fontSize: '30px', display: 'inline-block', margin: '10px' }}>
+    <ListItemButton to="/sport" style={{ textDecoration: 'none', color: 'white', fontSize: '30px', display: 'inline-block', margin: '10px' }}>
       <ListItemIcon>
         <SportsBasketballIcon />
       </ListItemIcon>

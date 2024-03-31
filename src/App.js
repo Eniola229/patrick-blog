@@ -8,6 +8,9 @@ import Editpost from './admin/Editpost';
 import Getvideo from './admin/Getvideo';
 import Getads from './admin/Getads';  
 import Editadsadmin from './admin/Editadsadmin';
+import Entertainment  from './Entertainment';
+import Leatest from './Leatest';
+import Sport from './Sport';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {
@@ -18,12 +21,15 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/readmore/:id" element={<Readmore />} />
           <Route path="/loginadmin" element={<Login />} />
-          <Route path="/AdminHome" element={<AdminHome />} />
+          <Route path="/AdminAuthHome" element={<AdminHome />} />
           <Route path="/posts" element={<Posts />} />
           <Route path="/getads" element={<Getads />} />
           <Route path="/getvideo" element={<Getvideo />} />
           <Route path="/editadsadmin/:id" element={<Editadsadmin />} />
           <Route path="/editpost/:id" element={<Editpost />} />
+          <Route path="/entertainment" element={<Entertainment/>}/>
+          <Route path="/leatest" element={<Leatest/>}/>
+          <Route path="/sport" element={<Sport/>}/>
         </Routes>
       </Router>
     </>

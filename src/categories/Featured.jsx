@@ -110,8 +110,9 @@ function Featured() {
 ) : (
   <>
     {posts
-      .filter(news => news.category === "Featured") 
-      .map(news => (
+      .filter(news => news.category === "Featured")
+          .sort((a, b) => new Date(b.date) - new Date(a.date))
+          .map(news => (
         <Box 
           sx={{
             width:"90%",

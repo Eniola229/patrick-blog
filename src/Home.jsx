@@ -10,6 +10,7 @@ import Sport from './categories/Sport';
 import Adstwo from './categories/Adstwo';
 import Grid from '@mui/material/Grid';
 import More from './More';
+
 function App() {
   return (
     <>
@@ -23,8 +24,10 @@ function App() {
           <News />
           <Entertainment/>
           <Videos/>
+          <Adstwo/>
           <Sport/>
           <More />
+          <Adstwo/>
         </Box>
       </Grid>
       <Grid item xs={12} md={4}>

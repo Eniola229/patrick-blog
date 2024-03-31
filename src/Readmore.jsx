@@ -11,6 +11,7 @@ import { db } from './auth/Firebase';
 import CircularProgress from '@mui/material/CircularProgress';
 import Swal from 'sweetalert2';
 import { collection } from 'firebase/firestore';
+import Adstwo from './categories/Adstwo';
 
 
 const Readmore = () => {
@@ -53,6 +54,28 @@ const Readmore = () => {
       margin: "auto",
     }}
   >
+  <Adstwo/>
+  <Box 
+  sx={{marginTop:'2%'}}
+  >
+    <Typography 
+    sx={{
+      color:"black",
+      fontWeight:'100',
+      fontSize:'1rem'
+    }}
+    >
+     {news.category}
+    </Typography>
+    <Box
+    sx={{
+      background:"linear-gradient(90deg, rgba(50, 0, 0, 1) 0%, rgba(130, 0, 15, 1) 50%, rgba(255, 0, 0, 1) 100%)",
+      width:"10%",
+      height:'1vh'
+    }}
+    >
+    </Box>
+    </Box>
     <Typography
       sx={{
         fontWeight: 'bold',
@@ -103,7 +126,7 @@ const Readmore = () => {
     >
       {news.body}
     </Typography>
-
+    <Adstwo/>
     <More />
   </Box>
 )}
