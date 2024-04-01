@@ -156,6 +156,9 @@ const Posts = () => {
                 <Typography variant="body2" sx={{color:"orange"}}>
                   {news.body}
                 </Typography>
+                <Typography variant="body2" sx={{color:"orange"}}>
+                  {news.category}
+                </Typography>
               </StyledRating>
               <StyledAmount>
                 {news.source}

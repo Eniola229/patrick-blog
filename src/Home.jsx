@@ -7,6 +7,7 @@ import News from './categories/News';
 import Videos from './Videos';
 import Entertainment from './categories/Entertainment';
 import Sport from './categories/Sport';
+import Bussiness from './categories/Bussiness';
 import Adstwo from './categories/Adstwo';
 import Grid from '@mui/material/Grid';
 import More from './More';
@@ -23,6 +24,7 @@ function App() {
           <Adstwo/>
           <News />
           <Entertainment/>
+          <Bussiness/>
           <Videos/>
           <Adstwo/>
           <Sport/>

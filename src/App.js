@@ -11,7 +11,10 @@ import Editadsadmin from './admin/Editadsadmin';
 import Entertainment  from './Entertainment';
 import Leatest from './Leatest';
 import Sport from './Sport';
+import Share from './Share'
+import Bussiness from './Bussiness';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
 
 function App() {
   return (
@@ -30,6 +33,8 @@ function App() {
           <Route path="/entertainment" element={<Entertainment/>}/>
           <Route path="/leatest" element={<Leatest/>}/>
           <Route path="/sport" element={<Sport/>}/>
+          <Route path="/share" element={<Share/>}/>
+          <Route path="/bussiness" element={<Bussiness/>}/>
         </Routes>
       </Router>
     </>

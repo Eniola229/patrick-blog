@@ -20,6 +20,7 @@ function Adsone() {
    const theme = useTheme();
    const isPhoneSize = useMediaQuery(theme.breakpoints.down('sm'));
    const [loading, setLoading] = useState(false);
+   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
    const [posts, setPosts] = useState([]);
 
    useEffect(() => {
@@ -57,7 +58,7 @@ function Adsone() {
     {posts
       .filter(ads => ads.category === "ads") 
       .map(ads => (
-     <Card sx={{ display: 'flex', width:"100%", marginTop:'3%' }}>
+     <Card sx={{display: isMobile ? "none" : "flex", width:"100%", marginTop:'3%' }}>
       <Box sx={{ display: 'flex', flexDirection: 'column' }}>
         <CardContent sx={{ flex: '1 0 auto' }}>
          <Typography component="div" variant="p" 

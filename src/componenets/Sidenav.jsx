@@ -87,6 +87,18 @@ export default function Sidenav() {
     </ListItemButton>
   </ListItem>
 
+
+   <ListItem disablePadding>
+    <ListItemButton to="/bussiness" style={{ textDecoration: 'none', color: 'white', fontSize: '30px', display: 'inline-block', margin: '10px' }}>
+      <ListItemIcon>
+        <MovieIcon />
+      </ListItemIcon>
+      <Typography sx={{fontSize:"25px", fontWeight:"bolder"}}>
+        Bussiness
+      </Typography>
+    </ListItemButton>
+  </ListItem>
+
   <ListItem disablePadding>
     <ListItemButton to="/sport" style={{ textDecoration: 'none', color: 'white', fontSize: '30px', display: 'inline-block', margin: '10px' }}>
       <ListItemIcon>
@@ -104,7 +116,7 @@ export default function Sidenav() {
         <InfoIcon />
       </ListItemIcon>
        <Typography sx={{fontSize:"25px", fontWeight:"bolder"}}>
-      About
+      About Us
       </Typography>
     </ListItemButton>
   </ListItem>
@@ -115,7 +127,7 @@ export default function Sidenav() {
       <Link to="/contact">
          <Button
             sx={{backgroundColor:"rgba(0, 6, 29, 1)", color:"white", width:"210px", borderRadius:"30px", size:"16px", height:"56px", padding:"27px 37px 20px 37px",  }}
-            >Donate
+            >Contact Us
           </Button>
         </Link>    
     </Box>

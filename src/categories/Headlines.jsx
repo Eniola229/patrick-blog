@@ -73,7 +73,7 @@ function Headlines() {
               backgroundSize: 'cover',
               backgroundPosition: 'center',
               width: '100%',
-              height: '400px'
+              height: isMobile ? '340px': '400px',
             }}
           >
             <Box 
