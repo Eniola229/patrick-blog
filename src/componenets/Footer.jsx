@@ -58,9 +58,12 @@ export default function Footer() {
             {"Copyright © "}
             <Link color="inherit" href="/">
              NomadicNarratives
-            </Link>{" "}
+            </Link> {" "}
             {new Date().getFullYear()}
             {"."}
+             <Link color="inherit" href="/">
+             | Developed By AfricTech
+            </Link>
           </Typography>
         </Box>
       </Container>

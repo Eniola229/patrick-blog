@@ -11,13 +11,16 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemButton from '@mui/material/ListItemButton';
 import { Link } from 'react-router-dom';
 import { Dialog, DialogTitle, DialogContent, DialogActions, TextField, Container } from '@mui/material';
-import { auth } from '../auth/Firebase';
+import { auth, messaging } from '../auth/Firebase';
 import { GoogleAuthProvider, signInWithPopup, sendEmailVerification, onAuthStateChanged, signOut} from 'firebase/auth';
 import Avatar from '@mui/material/Avatar';
 import { useMediaQuery, useTheme } from '@mui/material';
+import Swal from 'sweetalert2';
 
+import { generateToken } from '../auth/Firebase';
+import { onMessage } from 'firebase/messaging';
 
-export default function ButtonAppBar() {
+export default function Header() {
   const theme = useTheme();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -30,6 +33,12 @@ export default function ButtonAppBar() {
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
 
+  useEffect(() => {
+      generateToken();
+      onMessage(messaging, (payload) => {
+        console.log(payload);
+      });
+  }, []);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -99,6 +108,8 @@ export default function ButtonAppBar() {
         setIsLoading(false); 
       });
   };
+
+
 
 
   return (

@@ -90,7 +90,7 @@ function Bussiness() {
       fontSize:'1rem'
     }}
     >
-     Bussiness's
+     Bussiness
     </Typography>
     <Box
     sx={{

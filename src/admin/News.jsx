@@ -25,6 +25,7 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import NativeSelect from '@mui/material/NativeSelect';
 import Swal from 'sweetalert2';
+import { messaging } from '../auth/Firebase';
 
 const theme = createTheme({
   palette: {
@@ -127,6 +128,22 @@ const News = () => {
       ...data,
       timestamp: serverTimestamp()
     })
+    const postId = addDoc.id;
+    const message = {
+      notification: {
+        title: "New Post Added",
+        body: "Check out the latest news!",
+      },
+      data: {
+        postId: postId, 
+      },
+      topic: intro, 
+    };
+
+    // Send the push notification using Firebase Cloud Messaging
+    await messaging.send(message);
+
+
    {/*This show if post is succesfully*/}
         Swal.fire({
           title: 'Posts Uploaded Successfully',

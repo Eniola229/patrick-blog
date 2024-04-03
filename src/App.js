@@ -18,13 +18,13 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {
   return (
-    <>
+    <Box>
       <Router>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/readmore/:id" element={<Readmore />} />
-          <Route path="/loginadmin" element={<Login />} />
-          <Route path="/AdminAuthHome" element={<AdminHome />} />
+          <Route path="/loginauthblogadmin" element={<Login />} />
+          <Route path="/AdminAuthBlogHome" element={<AdminHome />} />
           <Route path="/posts" element={<Posts />} />
           <Route path="/getads" element={<Getads />} />
           <Route path="/getvideo" element={<Getvideo />} />
@@ -37,7 +37,7 @@ function App() {
           <Route path="/bussiness" element={<Bussiness/>}/>
         </Routes>
       </Router>
-    </>
+    </Box>
   );
 }
 

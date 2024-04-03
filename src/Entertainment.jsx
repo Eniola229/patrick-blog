@@ -90,7 +90,7 @@ function Entertainment() {
       fontSize:'1rem'
     }}
     >
-     Popular
+     Entertainment
     </Typography>
     <Box
     sx={{

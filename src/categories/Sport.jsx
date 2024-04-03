@@ -116,15 +116,15 @@ function Sport() {
   }, [])
 
 const handleShareClick = async (news) => {
- 
-  const shareUrl = `https://nomadicnarratives/share?id=${encodeURIComponent(news.id)}`;
+  console.log(news);
+  const baseUrl = 'https://nomadicnarratives.surge.sh/share'; // Replace with  actual sharing endpoint URL later
+  const shareUrl = `${baseUrl}?postId=${encodeURIComponent(news.id)}&title=${encodeURIComponent(news.title)}&text=${encodeURIComponent(news.intro)}&image=${encodeURIComponent(news.img)}`;
 
   if (navigator.share) {
     try {
       await navigator.share({
         title: news.title,
         text: news.intro,
-        img: news.img,
         url: shareUrl,
       });
       console.log('Post shared successfully');
@@ -136,6 +136,7 @@ const handleShareClick = async (news) => {
     window.open(shareUrl, '_blank');
   }
 };
+
 
 
 

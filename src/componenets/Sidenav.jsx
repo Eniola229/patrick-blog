@@ -58,7 +58,7 @@ export default function Sidenav() {
     <ListItemIcon>
       <HomeIcon />
     </ListItemIcon>
-    <Typography sx={{fontSize:"25px", fontWeight:"bolder"}}>
+    <Typography sx={{fontSize:"18px", fontWeight:"bolder"}}>
         Home
     </Typography>
   </ListItemButton>
@@ -70,7 +70,7 @@ export default function Sidenav() {
       <ListItemIcon>
         <ArticleIcon />
       </ListItemIcon>
-      <Typography sx={{fontSize:"25px", fontWeight:"bolder"}}>
+      <Typography sx={{fontSize:"18px", fontWeight:"bolder"}}>
       Leatest
       </Typography>
     </ListItemButton>
@@ -81,7 +81,7 @@ export default function Sidenav() {
       <ListItemIcon>
         <MovieIcon />
       </ListItemIcon>
-      <Typography sx={{fontSize:"25px", fontWeight:"bolder"}}>
+      <Typography sx={{fontSize:"18px", fontWeight:"bolder"}}>
       Entertainment
       </Typography>
     </ListItemButton>
@@ -93,7 +93,7 @@ export default function Sidenav() {
       <ListItemIcon>
         <MovieIcon />
       </ListItemIcon>
-      <Typography sx={{fontSize:"25px", fontWeight:"bolder"}}>
+      <Typography sx={{fontSize:"18px", fontWeight:"bolder"}}>
         Bussiness
       </Typography>
     </ListItemButton>
@@ -104,7 +104,7 @@ export default function Sidenav() {
       <ListItemIcon>
         <SportsBasketballIcon />
       </ListItemIcon>
-       <Typography sx={{fontSize:"25px", fontWeight:"bolder"}}>
+       <Typography sx={{fontSize:"18px", fontWeight:"bolder"}}>
       Sports
       </Typography>
     </ListItemButton>
@@ -115,7 +115,7 @@ export default function Sidenav() {
       <ListItemIcon>
         <InfoIcon />
       </ListItemIcon>
-       <Typography sx={{fontSize:"25px", fontWeight:"bolder"}}>
+       <Typography sx={{fontSize:"18px", fontWeight:"bolder"}}>
       About Us
       </Typography>
     </ListItemButton>
